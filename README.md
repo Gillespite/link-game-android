@@ -3,4 +3,9 @@
 
 点按右上角三个点来开始游戏
 
-判断两个格子是否可以消除的部分还没写完,默认返回true,所以目前只要是点击相同的两个就会消除,该部分写完就更新
+连线部分还没做,不过判断两个item是否可以相消已经差不多了
+
+![pic1](https://tva1.sinaimg.cn/large/0081Kckwgy1glue2unkhgj30nu140dvh.jpg)
+
+![pic2](https://tva1.sinaimg.cn/large/0081Kckwgy1glue42rqcqj30nu140grt.jpg)
+
