@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/lv1"
+        android:title="简单" />
+    <item
+        android:id="@+id/lv2"
+        android:title="一般" />
+    <item
+        android:id="@+id/lv3"
+        android:title="困难" />
+    <item
+        android:id="@+id/cl"
+        android:title="清除界面" />
+
+</menu>
