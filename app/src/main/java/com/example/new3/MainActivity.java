@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -124,14 +125,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     continue;
                 }
                 int pic = r.nextInt(t) + 1;
-                int pairi = r.nextInt(8) + 1;
-                int pairj = r.nextInt(9) + 1;
-                while (game[pairi][pairj] != 0) {
+                game[i][j] = pic;
+
+                int pairi;
+                int pairj;
+                do {
                     pairi = r.nextInt(8) + 1;
                     pairj = r.nextInt(9) + 1;
-                }
+                } while (game[pairi][pairj] != 0);
 
-                game[i][j] = pic;
+                System.out.println("loc1:"+i+","+j+" pic:"+pic);
+                System.out.println("loc2:"+pairi+","+pairj+" pic:"+pic);
                 game[pairi][pairj] = pic;
             }
         }
@@ -269,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (isok(firstloc, loc)) {
                         saynow("可以消除！");
 
-                        saynow("x1:" + tx1 + " y1:" + ty1 + " x2:" + tx2 + " y2:" + ty2);
+                        //saynow("x1:" + tx1 + " y1:" + ty1 + " x2:" + tx2 + " y2:" + ty2);
 
                         View view = getviewfromloc(loc);
                         ImageView img1 = view.findViewById(R.id.img1);
@@ -286,6 +290,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         game[firstloc % 9][(firstloc / 9) + 1] = 0;
 
                         printgame();
+
+                        Vibrator vibrator = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
+                        vibrator.vibrate(100);
                     } else {
                         saynow("不能消除！");
                     }
