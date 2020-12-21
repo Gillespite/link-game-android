@@ -22,6 +22,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     int[][] game = new int[10][11];
+
     private ViewGroup map;
 
     boolean isfirst;
@@ -95,19 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 saynow("选择了简单模式");
                 restart(10);
                 init();
-                //drawline(0,0,0,1,true);
-                //drawline(0,0,1,0);
-                //drawline(0,0,8,0);
-                //drawline(0,0,0,9);
-                //drawline(0,0,10,0);
-                //drawline(10,0,10,9);
-                //drawline(0,9,10,9);
-                //drawedge(0, 5, 0, 0, 5, 0);
-                //drawedge(0,5,0,9,5,9);
-                //drawedge(5,0,10,0,10,5);
-                //drawedge(10,5,10,9,5,9);
-                //drawedge(0,0,0,2,2,5);
-                //drawitem(0,5,'e',1);
                 break;
             case R.id.lv2:
                 saynow("选择了一般模式");
@@ -350,6 +338,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 isfirst = true;
 
                 if (loc == firstloc) {
+                    View view = getviewfromloc(loc);
+                    ImageView img1 = view.findViewById(R.id.img1);
+                    img1.setAlpha(255);
+
+                    View view2 = getviewfromloc(firstloc);
+                    ImageView img2 = view2.findViewById(R.id.img1);
+                    img2.setAlpha(255);
                     saynow("不能连续点击同一个方块！");
                     return;
                 }
