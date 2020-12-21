@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     boolean isfirst;
     int firstloc;
+    int temploc;
     int locc;
 
     boolean isclear;
@@ -251,15 +252,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         draw(loc % 9, (loc / 9) + 1, firstloc % 9, (firstloc / 9) + 1, tx2, ty2, tx1, ty1, true);
         locc=loc;
 
+        temploc=firstloc;
 
         //t();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                draw((locc % 9), (locc / 9) + 1, firstloc % 9, (firstloc / 9) + 1, tx2, ty2, tx1, ty1, false);
+                draw((locc % 9), (locc / 9) + 1, temploc % 9, (temploc / 9) + 1, tx2, ty2, tx1, ty1, false);
             }
-        }, 500);
+        }, 300);
     }
 
     public boolean isaway(int x1, int y1, int x2, int y2, int x1t, int y1t, int x2t, int y2t) {
@@ -340,6 +342,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (isfirst == true) {
                 isfirst = false;
                 saynow("第一次点击");
+                View view = getviewfromloc(loc);
+                ImageView img1 = view.findViewById(R.id.img1);
+                img1.setAlpha(155);
                 firstloc = loc;
             } else {
                 isfirst = true;
@@ -354,7 +359,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (isok(firstloc, loc)) {
                         saynow("可以消除！");
 
-                        saynow("x1:" + tx1 + " y1:" + ty1 + " x2:" + tx2 + " y2:" + ty2);
+                        //saynow("x1:" + tx1 + " y1:" + ty1 + " x2:" + tx2 + " y2:" + ty2);
 
                         View view = getviewfromloc(loc);
                         ImageView img1 = view.findViewById(R.id.img1);
@@ -362,6 +367,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         View view2 = getviewfromloc(firstloc);
                         ImageView img2 = view2.findViewById(R.id.img1);
+                        img2.setAlpha(255);
                         img2.setImageResource(R.drawable.trans);
 
                         view.setTag(null);
@@ -383,9 +389,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         timedraw(loc);
 
                     } else {
+                        View view = getviewfromloc(loc);
+                        ImageView img1 = view.findViewById(R.id.img1);
+                        img1.setAlpha(255);
+
+                        View view2 = getviewfromloc(firstloc);
+                        ImageView img2 = view2.findViewById(R.id.img1);
+                        img2.setAlpha(255);
+
                         saynow("不能消除!");
                     }
                 } else {
+                    View view = getviewfromloc(loc);
+                    ImageView img1 = view.findViewById(R.id.img1);
+                    img1.setAlpha(255);
+
+                    View view2 = getviewfromloc(firstloc);
+                    ImageView img2 = view2.findViewById(R.id.img1);
+                    img2.setAlpha(255);
+
                     saynow("和上一次点的不同!");
                 }
             }
